@@ -1,0 +1,35 @@
+@startuml
+
+title
+Application database schemas
+end title
+
+class football_match {
+    date: date
+    hour: time
+    homeTeam: football_team
+    awayTeam : football_team
+    homeTeamScore: int
+    awayTeamScore: int
+    attendance: int
+    referee: football_referee
+}
+note right of football_match::date
+    Includes the start hour
+end note
+note right of football_match::attendance
+    Number of spectator
+end note
+
+class football_team {
+    name: string
+}
+
+class football_referee {
+    name: string
+}
+
+football_match o--o football_team
+football_match o--o football_referee
+
+@enduml
