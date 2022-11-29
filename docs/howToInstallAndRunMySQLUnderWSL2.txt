@@ -1,0 +1,7 @@
+- follow instruction here https://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/
+- copy script mysql.server.sh to /etc/init.d/ and rename it mysql (not mysql.sh only mysql) -> it should be /etc/init.d/mysql
+- chmod +x /etc/init.d/mysql
+- set the efault basedir and datadir in the begining of the script : basedir=/usr and datadir=/var/lib/mysql
+- now you should be able to use the command sudo service mysql start and sudo service mysql stop
+
+You can also follow this guide on how to secure and start a MySQL server : https://pen-y-fan.github.io/2021/08/08/How-to-install-MySQL-on-WSL-2-Ubuntu/
