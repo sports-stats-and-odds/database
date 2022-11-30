@@ -7,6 +7,6 @@ setup(
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
     long_description=open('README.md').read(),
     url='https://github.com/sports-stats-and-odds/database',
-    package_data={'': ['*.sql', 'connector/data/*.sql', 'data/*.sql']},
+    package_data={'connector': ['*.sql', 'connector/data/*.sql', 'data/*.sql']},
     include_package_data=True    
 )
