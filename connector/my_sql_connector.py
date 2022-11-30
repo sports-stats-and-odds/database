@@ -2,6 +2,7 @@ import mysql.connector
 from mysql.connector import errorcode
 import os
 import logger
+from table_enum import Table
 
 #database must first be created by hand
 class MySQLConnector():
@@ -26,8 +27,9 @@ class MySQLConnector():
                 self._logger.error(err)
 
     def __del__(self) -> None:
-        if hasattr(self, "cnx"):
+        if hasattr(self, "_cnx"):
             self._cnx.close()
+                
 
     def _get_scripts_of_directory(self, directory: str) -> list[str]:
         fileNames = list(filter(lambda file_name: file_name.endswith('.sql'), os.listdir(directory))) #filter only file ending with sql in the specified directory
@@ -48,8 +50,28 @@ class MySQLConnector():
         for script in scripts:
             try:
                 self._cursor.execute(script)
-            except mysql.connector.Error as err:
-                self._logger.error(err.msg)
+            except Exception as error:
+                self._logger.error(error.msg)
 
-    def insert(table: int, data: dict[str, str]) -> None:
-        pass
+    def insert(self, table: Table, data: dict[str, str]) -> None:
+        try:
+            file = open(os.path.dirname(os.path.abspath(__file__)) + '/data/sql_scripts/insert/insert_' + table.value + '.sql')
+            script = file.read()
+            self._cursor.execute(script, data)
+            self._cnx.commit()
+        except mysql.connector.Error as error:
+            self._logger.error(error)
+            
+
+# temp = MySQLConnector()
+# temp.insert(Table.FOOTBALL_MATCH, {
+#     "id": "2022-01-01-Al-Ahli-Al-Shabab",
+#     "date": "2022-01-01",
+#     "hour": "19:50",
+#     "homeTeam": "Al-Ahli",
+#     "awayTeam": "Al-Shabab",
+#     "homeTeamScore": "3",
+#     "awayTeamScore": "4",
+#     "attendance": "7870",
+#     "referee": "Faisal Suleiman Al Balawi",
+# })
