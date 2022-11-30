@@ -6,5 +6,6 @@ setup(
     packages=['connector',],
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
     long_description=open('README.md').read(),
-    url='https://github.com/sports-stats-and-odds/database'
+    url='https://github.com/sports-stats-and-odds/database',
+    include_package_data=True
 )

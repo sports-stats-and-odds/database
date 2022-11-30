@@ -1,0 +1,2 @@
+recursive-include connector/data/*
+recursive-include data/*
