@@ -1,3 +1,7 @@
+DECLARE @autoId VARCHAR(110)
+
+SET @autoId = CONCAT('${date}', '-', '${homeTeam}', '-', '${awayTeam}')
+
 INSERT INTO football_match
 (
     id,
@@ -12,7 +16,7 @@ INSERT INTO football_match
 )
 
 VALUES (
-    ${date}-${homeTeam}-${awayTeam}
+    @autoId,
     ${date},
     ${hour},
     ${homeTeam},
