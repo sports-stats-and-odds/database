@@ -1,1 +1,2 @@
 mysql-connector-python
+git+https://github.com/sports-stats-and-odds/logger

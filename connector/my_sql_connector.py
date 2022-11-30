@@ -51,6 +51,3 @@ class MySQLConnector():
 
     def insert(table: int, data: dict[str, str]) -> None:
         pass
-
-temp = MySQLConnector()
-temp.create_tables_if_not_exists()
