@@ -2,6 +2,7 @@ import mysql.connector
 from mysql.connector import errorcode
 import os
 
+
 #database must first be created by hand
 class MySQLConnector():
 
@@ -13,7 +14,8 @@ class MySQLConnector():
                 host='localhost',
                 database='sports_stats_and_odds_db'
             )
-            self.cursor = self._cnx.cursor()
+            self._cursor = self._cnx.cursor()
+
         except mysql.connector.Error as err:
             if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
                 print("Something is wrong with your user name or password")
@@ -35,17 +37,20 @@ class MySQLConnector():
                 scripts.append(file.read())
                 file.close()
             except OSError as error:
-                print(f'An error occured when reading the file f{directory + "/" + fileName} : {error.strerror}')
+                print(f'An error occured when reading the file {directory + "/" + fileName} : {error.strerror}')
         return scripts
 
 
-    def _create_tables_if_not_exists(self) -> None:
+    def create_tables_if_not_exists(self) -> None:
         scripts = self._get_scripts_of_directory(os.path.dirname(os.path.abspath(__file__)) + '/data/sql_scripts/create_table')
         for script in scripts:
             try:
-                self.cursor.execute(script)
+                self._cursor.execute(script)
             except mysql.connector.Error as err:
                 print(err.msg)
-        
+
+    def insert(table: int, data: dict[str, str]) -> None:
+        pass
+
 temp = MySQLConnector()
-temp._create_tables_if_not_exists()
+temp.create_tables_if_not_exists()

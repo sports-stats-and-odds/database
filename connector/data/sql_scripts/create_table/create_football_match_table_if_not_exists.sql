@@ -1,5 +1,6 @@
 CREATE TABLE IF NOT EXISTS football_match
 (
+    id VARCHAR(110) PRIMARY KEY NOT NULL,
     date DATE NOT NULL,
     hour TIME,
     homeTeam VARCHAR(50) NOT NULL,
