@@ -1,2 +1,3 @@
 include README.md
 include connector/data/sql_scripts/create_table/create_football_match_table_if_not_exists.sql
+recursive-include connector/data *
