@@ -3,10 +3,9 @@ from distutils.core import setup
 setup(
     name='database',
     version='0.1',
-    packages=['connector',],
+    packages=['connector'],
+    package_data={'connector': ['data/*']},
     license='Creative Commons Attribution-Noncommercial-Share Alike license',
     long_description=open('README.md').read(),
     url='https://github.com/sports-stats-and-odds/database',
-    package_data={'connector': ['*.sql', 'connector/data/*.sql', 'data/*.sql']},
-    include_package_data=True    
 )
