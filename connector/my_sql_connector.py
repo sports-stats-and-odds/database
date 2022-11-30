@@ -2,7 +2,7 @@ import mysql.connector
 from mysql.connector import errorcode
 import os
 import logger
-from table_enum import Table
+from .table_enum import Table
 
 #database must first be created by hand
 class MySQLConnector():
