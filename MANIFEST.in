@@ -2,3 +2,5 @@ connector/data/*
 data/*
 connector/data/sql_scripts/create_table/create_football_match_table_if_not_exists.sql
 data/sql_scripts/create_table/create_football_match_table_if_not_exists.sql
+create_football_match_table_if_not_exists.sql
+*.sql
