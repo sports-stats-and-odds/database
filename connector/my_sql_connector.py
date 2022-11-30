@@ -59,6 +59,7 @@ class MySQLConnector():
             script = file.read()
             self._cursor.execute(script, data)
             self._cnx.commit()
+            self._logger.info("Data inserted.")
         except mysql.connector.Error as error:
             self._logger.error(error)
             
