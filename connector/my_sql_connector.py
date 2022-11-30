@@ -1,7 +1,7 @@
 import mysql.connector
 from mysql.connector import errorcode
 import os
-
+import logger
 
 #database must first be created by hand
 class MySQLConnector():
@@ -15,14 +15,15 @@ class MySQLConnector():
                 database='sports_stats_and_odds_db'
             )
             self._cursor = self._cnx.cursor()
+            self._logger = logger.get_logger(os.path.dirname(os.path.abspath(__file__)) + "/logs/")
 
         except mysql.connector.Error as err:
             if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-                print("Something is wrong with your user name or password")
+                self._logger.error("Something is wrong with your user name or password")
             elif err.errno == errorcode.ER_BAD_DB_ERROR:
-                print("Database does not exist")
+                self._logger.error("Database does not exist")
             else:
-                print(err)
+                self._logger.error(err)
 
     def __del__(self) -> None:
         if hasattr(self, "cnx"):
@@ -37,17 +38,18 @@ class MySQLConnector():
                 scripts.append(file.read())
                 file.close()
             except OSError as error:
-                print(f'An error occured when reading the file {directory + "/" + fileName} : {error.strerror}')
+                self._logger.error(f'An error occured when reading the file {directory + "/" + fileName} : {error.strerror}')
         return scripts
 
 
     def create_tables_if_not_exists(self) -> None:
+        self._logger.info("Creating tables if they don't exists...")
         scripts = self._get_scripts_of_directory(os.path.dirname(os.path.abspath(__file__)) + '/data/sql_scripts/create_table')
         for script in scripts:
             try:
                 self._cursor.execute(script)
             except mysql.connector.Error as err:
-                print(err.msg)
+                self._logger.error(err.msg)
 
     def insert(table: int, data: dict[str, str]) -> None:
         pass
