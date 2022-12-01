@@ -7,6 +7,10 @@ INSERT INTO football_match
     awayTeam,
     homeTeamScore,
     awayTeamScore,
+    contest,
+    round,
+    gameweek,
+    grandstand,
     attendance,
     referee
 )
@@ -19,6 +23,10 @@ VALUES (
     %(awayTeam)s,
     %(homeTeamScore)s,
     %(awayTeamScore)s,
+    %(contest)s,
+    %(round)s,
+    %(gameweek)s,
+    %(grandstand)s,
     %(attendance)s,
     %(referee)s
 );
