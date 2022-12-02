@@ -6,3 +6,5 @@
 - now you should be able to use the command sudo service mysql start and sudo service mysql stop
 
 You can also follow this guide on how to secure and start a MySQL server : https://pen-y-fan.github.io/2021/08/08/How-to-install-MySQL-on-WSL-2-Ubuntu/
+
+sudo mysql -u root -p
